@@ -1,8 +1,10 @@
 <p align="center">
-  <img src="assets/logo.png" alt="Antigravity Logo" width="250" />
+  <img src="assets/antigravity-color.svg" alt="Antigravity Icon" width="100" />
+  <br>
+  <img src="assets/antigravity-text.svg" alt="Antigravity" width="300" />
 </p>
 
-<h1 align="center">Antigravity Auto-Post Scheduler</h1>
+<h2 align="center">Auto-Post Scheduler</h2>
 
 <p align="center">
   <em>An intelligent, automated pipeline for generating and publishing high-quality graphics to Facebook.</em>
