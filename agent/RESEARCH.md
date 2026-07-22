@@ -32,13 +32,14 @@ Use your web search tool with at least 2-3 of these queries:
 - [ ] From a credible source?
 - [ ] Not already posted recently?
 
-### Step 4 — Extract These 5 Details
+### Step 4 — Extract These 6 Details
 Once selected, note down:
 1. **Rewritten Headline** — Your original 6-12 word journalistic headline
 2. **Source Name** — e.g. Reuters, TechCrunch
 3. **Date** — Format: `Month DD, YYYY`
 4. **Key Facts** — 3-5 bullet points (for your own reference only, not for the post)
 5. **2-Line Summary** — Two clean sentences (used in the graphic)
+6. **Article URL** — The full direct URL of the article (e.g. `https://techcrunch.com/2026/07/23/...`). You will pass this to `fetch_og_image.py` in the image step. This is mandatory.
 
 ---
 

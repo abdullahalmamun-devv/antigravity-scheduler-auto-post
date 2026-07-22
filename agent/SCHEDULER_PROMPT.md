@@ -24,7 +24,12 @@ After reading all files, execute the complete daily task cycle without stopping 
 STEP 1 — RESEARCH
 Find today's single most important tech or AI news story following RESEARCH.md exactly.
 Check agent/logs/ to confirm the story was not already posted in the last 7 days.
-Extract: Rewritten Headline, Source Name, Date, 2-Line Summary.
+Extract and note ALL of the following:
+  - Rewritten Headline (6-12 words, journalistic)
+  - Source Name (e.g. Reuters, TechCrunch)
+  - Date (Month DD, YYYY)
+  - 2-Line Summary (used in the graphic)
+  - Article URL — the full direct URL of the article (MANDATORY — needed for image step)
 
 STEP 2 — WRITE CAPTION
 Draft the full Facebook post caption following POST_FORMAT.md exactly.
