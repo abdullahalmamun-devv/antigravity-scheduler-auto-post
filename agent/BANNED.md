@@ -32,7 +32,7 @@
 | Banned | Reason |
 |--------|--------|
 | Text baked into the photograph | All text lives in HTML only. |
-| Logos baked into the photograph | Same rule. |
+| Logos baked into the photograph | Applies to AI-generated images ONLY. Local library images containing logos (e.g. `NVIDIA_Logo_Building_Sign_Photo.png`) ARE allowed — they were manually curated and approved. |
 | SubsDrop branding inside the photo | Brand lives in HTML, never in the image. |
 | Glowing circuit boards | Overused AI visual cliché. |
 | Humanoid robot imagery | Overused AI visual cliché. |

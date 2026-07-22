@@ -20,7 +20,7 @@ All agent instruction files live in: `D:\play-ground\ai-automation-for-sd\agent\
 | `agent/BANNED.md` | Hard rules. Read this second, before any output. |
 | `agent/RESEARCH.md` | How to find and select today's top tech/AI news story. |
 | `agent/POST_FORMAT.md` | How to write the Facebook caption. |
-| `agent/IMAGE_GEN.md` | How to get the hero image: OG image from article first, AI generation as fallback. |
+| `agent/IMAGE_GEN.md` | How to get the hero image: 3-tier pipeline — Tier 1 OG from article, Tier 2 local library search, Tier 3 AI generation. |
 | `agent/DESIGN.md` | How to render the final 1:1 branded graphic. |
 
 ---
@@ -44,7 +44,7 @@ All agent instruction files live in: `D:\play-ground\ai-automation-for-sd\agent\
 | Script | Location | What It Does |
 |--------|----------|-------------|
 | `fetch_og_image.py` | `D:\play-ground\ai-automation-for-sd\fetch_og_image.py` | **Run this FIRST in image step (Tier 1).** Fetches the editorial photo from the news article URL. Prints the saved path on success, or `[OG_FAILED]` if the site blocks access or has no OG image. |
-| `search_local_image.py` | `D:\play-ground\ai-automation-for-sd\search_local_image.py` | **Run this SECOND in image step (Tier 2), only if fetch_og_image.py returned [OG_FAILED].** Searches the local curated image library (164 images) using story keywords. Prints the best matching image path on success, or `[LIB_FAILED]` if no close match found. Usage: `python search_local_image.py --keywords "openai sam altman gpt"` |
+| `search_local_image.py` | `D:\play-ground\ai-automation-for-sd\search_local_image.py` | **Run this SECOND in image step (Tier 2), only if fetch_og_image.py returned [OG_FAILED].** Searches the local curated image library (164 images) using story keywords. Returns a `[LIB_MATCH]` block with up to 5 candidates — YOU pick the best one by reading the filename mood (`_Serious_`, `_Smiling_`, `_Speaking_`, etc.). Returns `[LIB_FAILED]` if no match found. Usage: `python search_local_image.py --keywords "openai sam altman gpt"` |
 | `update_content.py` | `D:\play-ground\ai-automation-for-sd\update_content.py` | Injects today's headline, summary, credit, image into the HTML template |
 | `render_graphic.py` | `D:\play-ground\ai-automation-for-sd\render_graphic.py` | Renders HTML → timestamped `output/YYYY-MM-DD_HHMMSS_graphic.jpg` (1080x1080). Prints exact path. |
 | `facebook_poster.py` | `D:\play-ground\ai-automation-for-sd\facebook_poster.py` | Posts the graphic + caption to Facebook. **Must be called with `--caption` and `--image` arguments.** Example: `python facebook_poster.py --caption "Full caption text" --image "D:\...\output\2026-07-22_090000_graphic.jpg"` |
