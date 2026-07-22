@@ -1,11 +1,21 @@
 # IMAGE_GEN.md — How to Generate Today's Hero Photograph
 
-## HYBRID IMAGE STRATEGY — Follow This Every Time
+## 3-TIER IMAGE STRATEGY — Follow This Exact Order Every Time
 
-Before generating any AI image, always try to fetch the actual editorial photo
-from the news article using the OG image fetcher script.
+You have THREE image sources in strict priority order. Never skip a tier.
+Stop at the first tier that succeeds.
 
-### Step 0 — Try OG Image First
+```
+Tier 1: OG Image      → fetch_og_image.py     (real editorial photo from the article)
+   ↓ [OG_FAILED]
+Tier 2: Local Library  → search_local_image.py (curated photo library, 164 images)
+   ↓ [LIB_FAILED]
+Tier 3: AI Generation  → generate_image tool   (last resort only)
+```
+
+---
+
+### Tier 1 — Try OG Image First
 
 Run this command with the news article URL you found in RESEARCH step:
 
@@ -17,10 +27,10 @@ python D:\play-ground\ai-automation-for-sd\fetch_og_image.py --url "FULL_NEWS_AR
 
 | Output | Meaning | What to do |
 |--------|---------|------------|
-| A file path (e.g. `D:\...\output\2026-07-23_og_image.jpg`) | OG image downloaded successfully | Use this path as `--image` in update_content.py. Skip AI generation entirely. |
-| `[OG_FAILED]` | Site blocked access or no OG image found | Proceed to AI image generation below. |
+| A file path (e.g. `D:\...\output\2026-07-23_og_image.jpg`) | OG image downloaded successfully | ✅ Use this path as `--image` in update_content.py. Skip Tier 2 and Tier 3 entirely. |
+| `[OG_FAILED]` | Site blocked access or no OG image found | Proceed to Tier 2 immediately. |
 
-**Why this is better:**
+**Why this is the best source:**
 - The OG image is the exact editorial photo the journalists chose for this story
 - It is already perfectly consistent with the news content
 - The HTML template applies `grayscale(100%)` CSS — so any color photo becomes B&W automatically
@@ -28,7 +38,56 @@ python D:\play-ground\ai-automation-for-sd\fetch_og_image.py --url "FULL_NEWS_AR
 
 ---
 
-## Your Goal (AI Fallback — Only if Step 0 returned [OG_FAILED])
+### Tier 2 — Search Local Image Library (Only if Tier 1 returned [OG_FAILED])
+
+Before generating any AI image, search the curated local library of 164 professional photos.
+This library contains tech CEOs, company buildings, AI products, and world leaders — all
+curated to match the types of stories SubsDrop covers.
+
+**Step 1 — Extract keywords from the story.**
+From the story headline and summary, extract:
+- Company names (e.g. `openai nvidia meta microsoft apple google deepseek`)
+- Person names (e.g. `sam altman jensen huang mark zuckerberg elon musk`)
+- Technology topics (e.g. `gpu chips ai model llm semiconductor cloud`)
+- Country or government names if relevant (e.g. `trump usa china xi jinping eu`)
+
+Example — Story: "NVIDIA Announces Blackwell B300 AI Chip for Data Centers"
+Keywords to pass: `nvidia jensen huang blackwell gpu chips ai semiconductor data center`
+
+**Step 2 — Run the library search:**
+```bash
+python D:\play-ground\ai-automation-for-sd\search_local_image.py --keywords "YOUR EXTRACTED KEYWORDS HERE"
+```
+
+**Read the output carefully:**
+
+| Output | Meaning | What to do |
+|--------|---------|------------|
+| A file path (e.g. `D:\play-ground\images\02\Jensen_Huang_CEO_NVIDIA_Speaking_Leather_Jacket.png`) | Matching image found in library | ✅ Use this path as `--image` in update_content.py. Skip Tier 3 entirely. |
+| `[LIB_FAILED]` | No sufficiently close match found in library | Proceed to Tier 3 (AI generation). |
+
+**Why this is better than AI generation:**
+- These are real, high-quality curated photos — not AI-generated
+- They directly feature the actual people and companies in the news
+- The grayscale CSS filter means color branding in the photo is neutralized automatically
+- A real photo of Sam Altman is infinitely more relevant than an AI-generated "researcher in a lab"
+
+**The local library covers:**
+- Tech CEOs: Sam Altman (OpenAI), Jensen Huang (NVIDIA), Mark Zuckerberg (Meta), Elon Musk,
+  Dario Amodei (Anthropic), Bill Gates, Jeff Bezos, Steve Jobs
+- Companies: Google, Microsoft, Meta, Apple, NVIDIA, Amazon, Samsung, DeepSeek, Anthropic,
+  Mistral, Perplexity, Cohere, AWS, Alibaba Cloud, Grok/xAI
+- World Leaders: Trump, Xi Jinping, Putin, Modi, Macron, Merz, Erdogan, Netanyahu,
+  Zelenskyy, Starmer, Yunus, MBS, and more
+
+---
+
+## Tier 3 — AI Image Generation (Last Resort — Only if BOTH Tier 1 and Tier 2 Failed)
+
+Only reach this step if:
+- Tier 1 returned `[OG_FAILED]` AND
+- Tier 2 returned `[LIB_FAILED]`
+
 Generate ONE clean, realistic, editorial-quality photograph that visually represents
 today's news story. The photo must contain ZERO text, ZERO logos, and ZERO graphics.
 It is a pure photograph only — all text and branding is handled by the HTML template.

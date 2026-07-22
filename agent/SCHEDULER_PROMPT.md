@@ -36,18 +36,39 @@ Draft the full Facebook post caption following POST_FORMAT.md exactly.
 No emojis. No exclamation marks. No clichés. Human journalistic tone.
 Store the complete caption text — you will pass it to facebook_poster.py in STEP 5.
 
-STEP 3 — GET HERO IMAGE (Hybrid: OG Image first, AI fallback)
+STEP 3 — GET HERO IMAGE (3-Tier: OG Image → Local Library → AI Fallback)
 
-First, try to fetch the editorial photo directly from the news article:
+Tier 1 — Try OG image from the article first:
   python D:\play-ground\ai-automation-for-sd\fetch_og_image.py --url "THE_NEWS_ARTICLE_URL_FROM_STEP_1"
 
 Read the output:
 - If the output is a file path (e.g. D:\play-ground\ai-automation-for-sd\output\2026-07-23_XXXXXX_og_image.jpg):
     OG image was downloaded successfully.
-    Note this path. Use it as --image in STEP 4. Do NOT generate an AI image.
+    Note this path. Use it as --image in STEP 4. Skip Tier 2 and Tier 3.
 
 - If the output is [OG_FAILED]:
-    The site blocked access or has no OG image.
+    Proceed to Tier 2 immediately.
+
+Tier 2 — Search local image library (only if Tier 1 returned [OG_FAILED]):
+  First, extract keywords from the story: company names, person names, technology topics,
+  country names if relevant. Then run:
+  python D:\play-ground\ai-automation-for-sd\search_local_image.py --keywords "KEYWORDS FROM STORY HERE"
+  Examples of good keyword strings:
+    "openai sam altman gpt chatgpt model release"
+    "nvidia jensen huang blackwell gpu chips ai semiconductor"
+    "trump usa tariff policy executive order ai regulation"
+    "deepseek china ai model llm chinese"
+
+  Read the output:
+  - If the output is a file path (e.g. D:\play-ground\images\02\Sam_Altman_CEO_OpenAI_Speaking_Serious.png):
+      A matching image was found in the local library.
+      Note this path. Use it as --image in STEP 4. Skip Tier 3.
+
+  - If the output is [LIB_FAILED]:
+      No close match in the library. Proceed to Tier 3.
+
+Tier 3 — AI generation (only if BOTH Tier 1 and Tier 2 failed):
+    The site blocked access AND no local library match was found.
     Fall back to AI image generation following IMAGE_GEN.md exactly.
     Generate a story-specific editorial photograph (no text, no logos, no watermarks).
     Note the saved path of the AI-generated image. Use it as --image in STEP 4.

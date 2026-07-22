@@ -58,6 +58,18 @@ The following ARE allowed and encouraged when the story is about a recognizable 
 
 ---
 
+## LOCAL LIBRARY IMAGE (search_local_image.py) — RULES
+
+| Rule | Details |
+|------|---------|
+| Never use `Black_Image_Empty.png` or `Black_Image_Empty_2.png` | These are placeholder files. The script will not return them (they are excluded from the index), but never use them manually. |
+| Never pre-process local library images | Do NOT crop, resize, or alter them manually. Pass the path directly to `update_content.py --image`. The HTML template handles all styling. |
+| Never bypass the tier order | Always try Tier 1 (OG image) first. Only use Tier 2 (library) if Tier 1 returns `[OG_FAILED]`. Only use Tier 3 (AI) if Tier 2 returns `[LIB_FAILED]`. |
+| Never force a library image that doesn't match | If `search_local_image.py` returns `[LIB_FAILED]`, respect it. Do NOT manually browse the library to pick an image that "kind of works". Proceed to AI generation. |
+| Local library images are subject to all PHOTOGRAPH rules above | Even though these are curated photos, they must still pass the same quality standards. |
+
+---
+
 ## DESIGN — BANNED
 
 | Banned | Reason |

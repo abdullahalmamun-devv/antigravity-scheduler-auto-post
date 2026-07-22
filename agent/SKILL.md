@@ -32,7 +32,7 @@ All agent instruction files live in: `D:\play-ground\ai-automation-for-sd\agent\
 | 1 | Read all agent files | — |
 | 2 | Find today's top tech/AI news story | `RESEARCH.md` |
 | 3 | Write the Facebook caption | `POST_FORMAT.md` |
-| 4 | Get hero image: try OG image from news URL first, AI photo as fallback | `IMAGE_GEN.md` |
+| 4 | Get hero image: Tier 1 OG → Tier 2 Local Library → Tier 3 AI generation | `IMAGE_GEN.md` |
 | 5 | Render the final 1:1 branded graphic | `DESIGN.md` |
 | 6 | Post to Facebook using `facebook_poster.py --caption "..." --image "..."` | — |
 | 7 | Save a daily log to `agent/logs/YYYY-MM-DD.md` | — |
@@ -43,7 +43,8 @@ All agent instruction files live in: `D:\play-ground\ai-automation-for-sd\agent\
 
 | Script | Location | What It Does |
 |--------|----------|-------------|
-| `fetch_og_image.py` | `D:\play-ground\ai-automation-for-sd\fetch_og_image.py` | **Run this FIRST in image step.** Fetches the editorial photo from the news article URL. Prints the saved path on success, or `[OG_FAILED]` if the site blocks access or has no OG image. |
+| `fetch_og_image.py` | `D:\play-ground\ai-automation-for-sd\fetch_og_image.py` | **Run this FIRST in image step (Tier 1).** Fetches the editorial photo from the news article URL. Prints the saved path on success, or `[OG_FAILED]` if the site blocks access or has no OG image. |
+| `search_local_image.py` | `D:\play-ground\ai-automation-for-sd\search_local_image.py` | **Run this SECOND in image step (Tier 2), only if fetch_og_image.py returned [OG_FAILED].** Searches the local curated image library (164 images) using story keywords. Prints the best matching image path on success, or `[LIB_FAILED]` if no close match found. Usage: `python search_local_image.py --keywords "openai sam altman gpt"` |
 | `update_content.py` | `D:\play-ground\ai-automation-for-sd\update_content.py` | Injects today's headline, summary, credit, image into the HTML template |
 | `render_graphic.py` | `D:\play-ground\ai-automation-for-sd\render_graphic.py` | Renders HTML → timestamped `output/YYYY-MM-DD_HHMMSS_graphic.jpg` (1080x1080). Prints exact path. |
 | `facebook_poster.py` | `D:\play-ground\ai-automation-for-sd\facebook_poster.py` | Posts the graphic + caption to Facebook. **Must be called with `--caption` and `--image` arguments.** Example: `python facebook_poster.py --caption "Full caption text" --image "D:\...\output\2026-07-22_090000_graphic.jpg"` |
