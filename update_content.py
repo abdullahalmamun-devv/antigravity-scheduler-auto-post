@@ -15,7 +15,7 @@ import re
 import os
 from datetime import datetime
 
-ROOT = r"D:\play-ground\ai-automation-for-sd"
+ROOT = os.path.dirname(os.path.abspath(__file__))
 TEMPLATE_PATH = os.path.join(ROOT, "subsdrop_template.html")
 
 

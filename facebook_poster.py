@@ -17,7 +17,7 @@ import requests
 from datetime import datetime
 from dotenv import load_dotenv
 
-ROOT        = r"D:\play-ground\ai-automation-for-sd"
+ROOT        = os.path.dirname(os.path.abspath(__file__))
 ARCHIVE_DIR = os.path.join(ROOT, "output", "archive")
 
 load_dotenv(os.path.join(ROOT, ".env"))

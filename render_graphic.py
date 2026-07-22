@@ -8,7 +8,7 @@ from playwright.sync_api import sync_playwright
 import os
 from datetime import datetime
 
-ROOT       = r"D:\play-ground\ai-automation-for-sd"
+ROOT       = os.path.dirname(os.path.abspath(__file__))
 HTML_PATH  = "file:///" + os.path.join(ROOT, "subsdrop_template.html").replace("\\", "/")
 OUTPUT_DIR = os.path.join(ROOT, "output")
 

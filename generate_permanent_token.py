@@ -9,12 +9,14 @@ import os
 import sys
 from dotenv import load_dotenv
 
-ROOT = r"D:\play-ground\ai-automation-for-sd"
+ROOT = os.path.dirname(os.path.abspath(__file__))
 ENV_PATH = os.path.join(ROOT, ".env")
 
-APP_ID     = "2211785452886589"
-APP_SECRET = "c9be78eeb1edc4ab7131394f0be18828"
-PAGE_ID    = "590121077506988"
+load_dotenv(ENV_PATH)
+
+APP_ID     = os.getenv("FACEBOOK_APP_ID", "").strip()
+APP_SECRET = os.getenv("FACEBOOK_APP_SECRET", "").strip()
+PAGE_ID    = os.getenv("FACEBOOK_PAGE_ID", "").strip()
 
 def get_long_lived_user_token(short_token):
     print("[1/3] Exchanging short-lived token for long-lived user token...")
@@ -54,13 +56,22 @@ def save_to_env(page_token):
     with open(ENV_PATH, "w") as f:
         f.write(f"FACEBOOK_ACCESS_TOKEN={page_token}\n")
         f.write(f"FACEBOOK_PAGE_ID={PAGE_ID}\n")
+        f.write(f"FACEBOOK_APP_ID={APP_ID}\n")
+        f.write(f"FACEBOOK_APP_SECRET={APP_SECRET}\n")
     print(f"    Saved to {ENV_PATH}")
 
 def main():
-    load_dotenv(ENV_PATH)
     current_token = os.getenv("FACEBOOK_ACCESS_TOKEN", "").strip()
     if not current_token:
         print("ERROR: No token found in .env — please add a fresh short-lived token first.")
+        sys.exit(1)
+
+    if not APP_ID or not APP_SECRET:
+        print("ERROR: FACEBOOK_APP_ID or FACEBOOK_APP_SECRET missing in .env")
+        sys.exit(1)
+
+    if not PAGE_ID:
+        print("ERROR: FACEBOOK_PAGE_ID missing in .env")
         sys.exit(1)
 
     long_lived  = get_long_lived_user_token(current_token)

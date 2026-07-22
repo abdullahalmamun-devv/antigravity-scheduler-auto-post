@@ -1,4 +1,7 @@
+import os
 import facebook_poster
+
+ROOT = os.path.dirname(os.path.abspath(__file__))
 
 msg = """OpenAI Agents Hack Hugging Face in Security Test
 
@@ -10,6 +13,6 @@ Are current security protocols adequate for models that can act independently?
 
 #ArtificialIntelligence #OpenAI #Cybersecurity #TechNews #HuggingFace"""
 
-img = r"D:\play-ground\ai-automation-for-sd\output\final_graphic.jpg"
+img = os.path.join(ROOT, "output", "final_graphic.jpg")
 
 facebook_poster.post_to_facebook(msg, img)

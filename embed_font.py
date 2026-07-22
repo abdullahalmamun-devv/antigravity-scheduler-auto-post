@@ -4,7 +4,7 @@ One-time setup script: embeds Inter font as base64 into subsdrop_template.html
 so that render_graphic.py works offline (no Google Fonts dependency).
 
 Run once:
-  python D:\play-ground\ai-automation-for-sd\embed_font.py
+  python embed_font.py
 """
 
 import base64
@@ -12,7 +12,7 @@ import re
 import os
 import urllib.request
 
-ROOT          = r"D:\play-ground\ai-automation-for-sd"
+ROOT          = os.path.dirname(os.path.abspath(__file__))
 TEMPLATE_PATH = os.path.join(ROOT, "subsdrop_template.html")
 FONT_CACHE    = os.path.join(ROOT, "inter_latin.woff2")
 

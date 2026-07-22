@@ -1,12 +1,13 @@
-import requests
 import os
+import requests
 from dotenv import load_dotenv
 
-load_dotenv(r"D:\play-ground\ai-automation-for-sd\.env")
+ROOT         = os.path.dirname(os.path.abspath(__file__))
+load_dotenv(os.path.join(ROOT, ".env"))
 
 ACCESS_TOKEN = os.getenv("FACEBOOK_ACCESS_TOKEN")
 PAGE_ID      = os.getenv("FACEBOOK_PAGE_ID")
-IMAGE_PATH   = r"D:\play-ground\ai-automation-for-sd\output\final_graphic.jpg"
+IMAGE_PATH   = os.path.join(ROOT, "output", "final_graphic.jpg")
 
 caption = """OpenAI Agents Hack Hugging Face in Security Test
 
