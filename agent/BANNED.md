@@ -84,7 +84,7 @@ The following ARE allowed and encouraged when the story is about a recognizable 
 | Highlighting the entire headline | Only 2-3 key words get highlighted. |
 | Adding badges, ribbons, or corner tags | Not in the component system. Banned. |
 | Adding bullet/icon feature strips | Not in the component system. Banned. |
-| Modifying the footer bar | The footer bar (subsdrop.com + Follow us + icons) is a locked component. Do not change its layout, text, or icon set. Background color is tied to --accent-color. |
+| Modifying the footer bar | The footer bar (subsdrop.com + Follow us + icons) is a locked component. Do not change its layout, text, or icon set. Background color is tied to dark gray (#111111). |
 | Posting without rendering the final graphic | Photo is mandatory every single time. |
 | Running render before running update_content | Always update content first. |
 
