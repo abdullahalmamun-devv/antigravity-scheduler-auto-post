@@ -1,6 +1,34 @@
 # IMAGE_GEN.md — How to Generate Today's Hero Photograph
 
-## Your Goal
+## HYBRID IMAGE STRATEGY — Follow This Every Time
+
+Before generating any AI image, always try to fetch the actual editorial photo
+from the news article using the OG image fetcher script.
+
+### Step 0 — Try OG Image First
+
+Run this command with the news article URL you found in RESEARCH step:
+
+```bash
+python D:\play-ground\ai-automation-for-sd\fetch_og_image.py --url "FULL_NEWS_ARTICLE_URL"
+```
+
+**Read the output carefully:**
+
+| Output | Meaning | What to do |
+|--------|---------|------------|
+| A file path (e.g. `D:\...\output\2026-07-23_og_image.jpg`) | OG image downloaded successfully | Use this path as `--image` in update_content.py. Skip AI generation entirely. |
+| `[OG_FAILED]` | Site blocked access or no OG image found | Proceed to AI image generation below. |
+
+**Why this is better:**
+- The OG image is the exact editorial photo the journalists chose for this story
+- It is already perfectly consistent with the news content
+- The HTML template applies `grayscale(100%)` CSS — so any color photo becomes B&W automatically
+- No manual processing needed
+
+---
+
+## Your Goal (AI Fallback — Only if Step 0 returned [OG_FAILED])
 Generate ONE clean, realistic, editorial-quality photograph that visually represents
 today's news story. The photo must contain ZERO text, ZERO logos, and ZERO graphics.
 It is a pure photograph only — all text and branding is handled by the HTML template.

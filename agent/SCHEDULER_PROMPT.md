@@ -31,10 +31,21 @@ Draft the full Facebook post caption following POST_FORMAT.md exactly.
 No emojis. No exclamation marks. No clichés. Human journalistic tone.
 Store the complete caption text — you will pass it to facebook_poster.py in STEP 5.
 
-STEP 3 — GENERATE IMAGE
-Generate a pure editorial photograph following IMAGE_GEN.md exactly.
-No text, no logos, no watermarks in the photo.
-Note the full absolute path of the saved image file.
+STEP 3 — GET HERO IMAGE (Hybrid: OG Image first, AI fallback)
+
+First, try to fetch the editorial photo directly from the news article:
+  python D:\play-ground\ai-automation-for-sd\fetch_og_image.py --url "THE_NEWS_ARTICLE_URL_FROM_STEP_1"
+
+Read the output:
+- If the output is a file path (e.g. D:\play-ground\ai-automation-for-sd\output\2026-07-23_XXXXXX_og_image.jpg):
+    OG image was downloaded successfully.
+    Note this path. Use it as --image in STEP 4. Do NOT generate an AI image.
+
+- If the output is [OG_FAILED]:
+    The site blocked access or has no OG image.
+    Fall back to AI image generation following IMAGE_GEN.md exactly.
+    Generate a story-specific editorial photograph (no text, no logos, no watermarks).
+    Note the saved path of the AI-generated image. Use it as --image in STEP 4.
 
 STEP 4 — RENDER GRAPHIC
 Run update_content.py to inject today's content into the HTML template:
