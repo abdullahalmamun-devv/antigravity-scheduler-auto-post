@@ -59,18 +59,60 @@ Keywords to pass: `nvidia jensen huang blackwell gpu chips ai semiconductor data
 python D:\play-ground\ai-automation-for-sd\search_local_image.py --keywords "YOUR EXTRACTED KEYWORDS HERE"
 ```
 
-**Read the output carefully:**
+**Step 3 — Read the output and pick the BEST image yourself.**
 
-| Output | Meaning | What to do |
-|--------|---------|------------|
-| A file path (e.g. `D:\play-ground\images\02\Jensen_Huang_CEO_NVIDIA_Speaking_Leather_Jacket.png`) | Matching image found in library | ✅ Use this path as `--image` in update_content.py. Skip Tier 3 entirely. |
-| `[LIB_FAILED]` | No sufficiently close match found in library | Proceed to Tier 3 (AI generation). |
+The script returns one of two outputs:
 
-**Why this is better than AI generation:**
-- These are real, high-quality curated photos — not AI-generated
-- They directly feature the actual people and companies in the news
-- The grayscale CSS filter means color branding in the photo is neutralized automatically
-- A real photo of Sam Altman is infinitely more relevant than an AI-generated "researcher in a lab"
+**Output A — `[LIB_FAILED]`:** No match found. Proceed to Tier 3 (AI generation).
+
+**Output B — a `[LIB_MATCH]` block:** Up to 5 candidates found. YOU must pick the best one.
+
+```
+[LIB_MATCH]
+D:\play-ground\images\02\Sam_Altman_CEO_OpenAI_Speaking_Focused.png | Sam_Altman_CEO_OpenAI_Speaking_Focused.png | score=8.7 | tier=1 | category=tech_person
+D:\play-ground\images\02\Sam_Altman_CEO_OpenAI_Speaking_Neutral.png | Sam_Altman_CEO_OpenAI_Speaking_Neutral.png | score=5.8 | tier=1 | category=tech_person
+D:\play-ground\images\02\Sam_Altman_CEO_OpenAI_Speaking_Serious.png | Sam_Altman_CEO_OpenAI_Speaking_Serious.png | score=5.8 | tier=1 | category=tech_person
+[/LIB_MATCH]
+```
+
+Each line = one candidate. Format: `PATH | FILENAME | score | tier | category`
+
+Read the **FILENAME** of each candidate. The filename encodes the photo's mood and pose.
+Use this guide to select the one that best matches the story's tone:
+
+#### Filename Mood Selection Guide
+
+| Filename contains | Photo mood | Best for |
+|---|---|---|
+| `_Speaking_` | Active, engaged, in-the-moment | Product launch, keynote, announcement, press conference |
+| `_Serious_` | Grave, focused, authoritative | Controversy, lawsuit, criticism, layoffs, market crash, security breach |
+| `_Smiling_` or `_Happy_` | Positive, celebratory | Record earnings, funding round, award, milestone, major partnership |
+| `_Portrait_` | Neutral, composed | General profile story, policy analysis, no strong tone required |
+| `_Standing_` | Formal, official | Official announcement, government or regulatory story |
+| `_Building_` or `_Sign_` | Corporate, institutional | Company-level story when no close person photo is available |
+| `_Logo_` or `_Icon_` | Brand or product focus | Product release, app update, brand news — last choice |
+
+**Decision examples:**
+
+| Story | Pick this |
+|---|---|
+| "OpenAI faces antitrust probe" | `_Serious_` |
+| "Sam Altman named TIME Person of the Year" | `_Smiling_` or `_Happy_` |
+| "OpenAI launches GPT-5 at developer conference" | `_Speaking_` |
+| "Analysis: OpenAI's shifting strategy" | `_Portrait_` |
+| "Jensen Huang announces Blackwell at GTC keynote" | `_Speaking_` |
+| "Meta reports record quarterly revenue" | `_Smiling_` or `_Happy_` |
+| "Microsoft faces EU antitrust investigation" | `_Serious_` or `_Building_` |
+
+**Step 4 — Note the chosen path.**
+Copy the full `PATH` (the part before the first `|`) from the selected candidate line.
+Use this as `--image` in `update_content.py`. Skip Tier 3 entirely.
+
+**Why this beats AI generation:**
+- Real, high-quality curated photos — not AI-generated
+- Directly feature the actual people and companies in the news
+- Grayscale CSS filter neutralizes color branding automatically
+- A real photo of Sam Altman looking serious is infinitely more relevant than an AI-generated "researcher in a lab"
 
 **The local library covers:**
 - Tech CEOs: Sam Altman (OpenAI), Jensen Huang (NVIDIA), Mark Zuckerberg (Meta), Elon Musk,
@@ -78,7 +120,7 @@ python D:\play-ground\ai-automation-for-sd\search_local_image.py --keywords "YOU
 - Companies: Google, Microsoft, Meta, Apple, NVIDIA, Amazon, Samsung, DeepSeek, Anthropic,
   Mistral, Perplexity, Cohere, AWS, Alibaba Cloud, Grok/xAI
 - World Leaders: Trump, Xi Jinping, Putin, Modi, Macron, Merz, Erdogan, Netanyahu,
-  Zelenskyy, Starmer, Yunus, MBS, and more
+  Zelenskyy, Starmer, Yunus, MBS, and many more
 
 ---
 

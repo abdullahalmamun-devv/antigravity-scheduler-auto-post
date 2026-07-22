@@ -60,12 +60,21 @@ Tier 2 — Search local image library (only if Tier 1 returned [OG_FAILED]):
     "deepseek china ai model llm chinese"
 
   Read the output:
-  - If the output is a file path (e.g. D:\play-ground\images\02\Sam_Altman_CEO_OpenAI_Speaking_Serious.png):
-      A matching image was found in the local library.
-      Note this path. Use it as --image in STEP 4. Skip Tier 3.
+  - If output is [LIB_FAILED]: No match in library. Proceed to Tier 3.
 
-  - If the output is [LIB_FAILED]:
-      No close match in the library. Proceed to Tier 3.
+  - If output is a [LIB_MATCH] block:
+      Up to 5 candidate images are listed, each with their filename.
+      YOU must pick the best one based on the story's tone.
+      Read the filename of each candidate:
+        _Speaking_           -> announcements, launches, keynotes
+        _Serious_            -> controversy, lawsuit, criticism, crash
+        _Smiling_ / _Happy_  -> positive news, funding, awards, records
+        _Portrait_           -> neutral stories, general coverage
+        _Standing_           -> official/government announcements
+        _Building_ / _Sign_  -> company-level story, no person photo
+        _Logo_ / _Icon_      -> brand/product news, last choice
+      Copy the full PATH of your chosen candidate (everything before the first |).
+      Use it as --image in STEP 4. Skip Tier 3.
 
 Tier 3 — AI generation (only if BOTH Tier 1 and Tier 2 failed):
     The site blocked access AND no local library match was found.
