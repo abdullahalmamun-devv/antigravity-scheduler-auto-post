@@ -1,3 +1,11 @@
+---
+
+**Story Headline:** US Accuses China's Moonshot AI of Stealing Anthropic's Model
+**Source URL:** https://www.businessinsider.com/us-accuses-china-moonshot-ai-stealing-anthropic-fable-2026-7
+**Image Path:** D:\play-ground\ai-automation-for-sd\output\archive\2026-07-23_054950_graphic.jpg
+**Publishing Status:** Success (Post ID: 122166956426739949)
+
+**Post Caption:**
 US Accuses China's Moonshot AI of Stealing Anthropic's Model
 
 The White House has publicly accused Beijing-based startup Moonshot AI of conducting large-scale, unauthorized distillation of Anthropic's advanced Claude Fable 5 model. Top technology officials allege the Chinese firm systematically extracted outputs from the US model to train its own newly released Kimi K3.

@@ -20,9 +20,18 @@ TEMPLATE_PATH = os.path.join(ROOT, "subsdrop_template.html")
 
 
 def update_template(headline_html: str, summary: str, credit: str, image_path: str,
-                    category: str = "TECHNOLOGY", date_str: str = None):
+                    category: str = "TECHNOLOGY", date_str: str = None,
+                    is_local_image: bool = False):
     with open(TEMPLATE_PATH, "r", encoding="utf-8") as f:
         content = f.read()
+
+    # --- Auto-detect or toggle local-image-mode ---
+    is_local = is_local_image or ("play-ground" in image_path.replace("\\", "/").lower() and "/images/" in image_path.replace("\\", "/").lower())
+    if is_local:
+        if 'class="local-image-mode"' not in content:
+            content = re.sub(r'<body([^>]*)>', r'<body\1 class="local-image-mode">', content, count=1)
+    else:
+        content = content.replace(' class="local-image-mode"', '').replace('class="local-image-mode"', '')
 
     # --- Update CATEGORY ---
     content = re.sub(
@@ -93,7 +102,7 @@ def update_template(headline_html: str, summary: str, credit: str, image_path: s
     print(f"     Headline : {headline_html[:70]}...")
     print(f"     Summary  : {summary[:70]}...")
     print(f"     Credit   : {credit}")
-    print(f"     Image    : {image_path}")
+    print(f"     Image    : {image_path} (Local Mode: {is_local})")
 
 
 if __name__ == "__main__":
@@ -106,7 +115,9 @@ if __name__ == "__main__":
                         help="Category label (e.g. ARTIFICIAL INTELLIGENCE, CYBERSECURITY). Default: TECHNOLOGY")
     parser.add_argument("--date",     required=False, default=None,
                         help="Date string (e.g. 'July 23, 2026'). Default: today's date auto-generated")
+    parser.add_argument("--is-local-image", action="store_true", default=False,
+                        help="Enlarge hero image layout when using Tier 2 local library images")
     args = parser.parse_args()
 
     update_template(args.headline, args.summary, args.credit, args.image,
-                    args.category, args.date)
+                    args.category, args.date, args.is_local_image)

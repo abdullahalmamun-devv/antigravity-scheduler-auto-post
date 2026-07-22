@@ -139,6 +139,23 @@
             min-height: 0; /* allows it to shrink */
             border-radius: 14px;
             overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        /* Large Hero Mode (for Tier 2 Local Library Images) */
+        body.local-image-mode .hero-image-container {
+            flex-grow: 2.2;
+        }
+        body.local-image-mode .headline {
+            font-size: 58px;
+            margin-bottom: 12px;
+        }
+        body.local-image-mode .summary {
+            font-size: 21px;
+            margin-bottom: 10px;
+        }
+        body.local-image-mode .credit-container {
+            margin-bottom: 12px;
         }
 
         .hero-image {
@@ -155,7 +172,7 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            background-color: #111111;
+            background-color: var(--accent-color);
             height: 56px;
             display: flex;
             align-items: center;
@@ -187,7 +204,7 @@
             font-family: 'Inter', sans-serif;
             font-size: 12px;
             font-weight: 500;
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.9);
             letter-spacing: 0.04em;
             text-transform: uppercase;
         }
@@ -202,7 +219,7 @@
             width: 28px;
             height: 28px;
             border-radius: 6px;
-            background-color: #2a2a2a;
+            background-color: rgba(0, 0, 0, 0.25);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -227,12 +244,12 @@
 }
 </style>
 </head>
-<body>
+<body class="local-image-mode">
 
     <!-- MASTHEAD -->
     <div class="masthead">
         <div class="masthead-left">
-            <div class="category">ARTIFICIAL INTELLIGENCE</div>
+            <div class="category">POLICY</div>
             <div class="date">July 23, 2026</div>
         </div>
         <div class="brand">SubsDrop</div>
@@ -241,20 +258,20 @@
     <div class="content">
 
         <!-- HEADLINE -->
-        <div class="headline">ALPHABET HITS RECORD <span class='highlight'>$500B CLOUD BACKLOG</span> ON AI DEMAND</div>
+        <div class="headline">US ACCUSES CHINA'S MOONSHOT AI OF <span class='highlight'>STEALING ANTHROPIC'S MODEL</span></div>
 
         <!-- SUMMARY -->
-        <div class="summary">Alphabet has crushed market expectations by reporting a cloud business backlog exceeding $500 billion. The surge is largely driven by massive enterprise investments in artificial intelligence infrastructure.</div>
+        <div class="summary">The White House alleges Chinese startup Moonshot AI used unauthorized 'distillation' to copy Anthropic's advanced Claude Fable 5. The dispute escalates tensions over frontier model security and export controls.</div>
 
         <!-- CREDIT LINE -->
         <div class="credit-container">
-            <div class="credit">The Edge Singapore <span class="sep">|</span> Jul 23 <span class="sep">|</span> Tech Desk</div>
+            <div class="credit">Business Insider <span class="sep">|</span> Jul 23 <span class="sep">|</span> Tech Desk</div>
             <div class="credit-sub">Picture: AI-Generated Editorial Photography</div>
         </div>
 
         <!-- HERO IMAGE (Frame B — inset, rounded) -->
         <div class="hero-image-container">
-            <img src="file:///D:/play-ground/images/02/Google_Logo_Building_Photo.png" alt="Hero Image" class="hero-image">
+            <img src="file:///D:/play-ground/images/02/Dario_Amodei_CEO_Anthropic_Speaking_Serious.png" alt="Hero Image" class="hero-image">
         </div>
 
         <!-- FOOTER BAR -->
