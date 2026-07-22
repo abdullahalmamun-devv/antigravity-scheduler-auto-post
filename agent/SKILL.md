@@ -20,7 +20,7 @@ All agent instruction files live in: `D:\play-ground\ai-automation-for-sd\agent\
 | `agent/BANNED.md` | Hard rules. Read this second, before any output. |
 | `agent/RESEARCH.md` | How to find and select today's top tech/AI news story. |
 | `agent/POST_FORMAT.md` | How to write the Facebook caption. |
-| `agent/IMAGE_GEN.md` | How to generate the pure hero photograph. |
+| `agent/IMAGE_GEN.md` | How to get the hero image: OG image from article first, AI generation as fallback. |
 | `agent/DESIGN.md` | How to render the final 1:1 branded graphic. |
 
 ---

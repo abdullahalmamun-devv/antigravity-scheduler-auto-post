@@ -41,9 +41,9 @@ It should feel like a real photographer captured a real moment — not AI-genera
 
 ---
 
-## How to Decide What to Photograph — The 4-Question Framework
+## How to Decide What to Photograph — The 5-Question Framework
 
-Before writing any prompt, answer these 4 questions about the news story:
+Before writing any prompt, answer these 5 questions about the news story:
 
 ### Question 1 — What is the core ACTION or EVENT?
 (e.g. a company launched something, a court ruled, a deal was signed, a model was released)
@@ -57,7 +57,35 @@ Before writing any prompt, answer these 4 questions about the news story:
 ### Question 4 — What single image would a Reuters photographer take at this moment?
 (Think: what would appear on the front page of a newspaper illustrating this story?)
 
-Your answers to these 4 questions define your image subject. Use that — not a preset table.
+### Question 5 — Is a major recognizable company or person central to this story?
+
+**[MANDATORY RULE]:** If a well-known tech company is at the center of the story (e.g., Google, OpenAI, Apple), you **MUST** include their **recognizable physical environment, product, or iconic setting** in the image. 
+You are **BANNED** from using generic fallback images (like "server racks", "laptops", or "meeting rooms") when a specific company is the main subject.
+
+Think like a Reuters photographer: they don't photograph logos, but they also don't photograph generic server rooms if the story is about Google. They photograph the **building, the campus, the hardware, the specific product** that people visually associate with that exact company.
+
+**Recognizable Visual Cues (use when relevant):**
+
+| Company | What to show instead of logo |
+|---------|------------------------------|
+| Apple | Apple Park (circular spaceship building), minimalist product on clean surface |
+| Google | Googleplex campus with colorful modern architecture, Android robot statue garden |
+| NVIDIA | Close-up of a high-end GPU/graphics card, green-tinted server infrastructure |
+| Microsoft | Redmond campus exterior, Surface device on executive desk |
+| Meta | VR headset (Quest) resting on a clean desk, virtual reality lab |
+| OpenAI | Ultra-clean minimalist research lab, white modern office interior |
+| Anthropic | Quiet, thoughtful research workspace, warm-lit modern office |
+| Amazon/AWS | Massive warehouse interior, rows of server racks at scale |
+| Tesla | Electric vehicle on manufacturing floor, Gigafactory interior |
+| Samsung | Semiconductor fabrication clean room, folding phone on display |
+| Any Government | Formal government building exterior, courtroom interior, legislative chamber |
+
+**If the company is NOT in the table above**, apply the same principle:
+photograph their **most iconic physical object, place, or product** — never their logo or name.
+
+**If no specific company is central**, skip Q5 and use Q1-Q4 only.
+
+Your answers to these 5 questions define your image subject.
 
 ---
 
@@ -67,6 +95,7 @@ Build the prompt in this structure:
 
 ```
 A high-end editorial photograph of [ANSWER TO Q2 — the subject].
+[ANSWER TO Q5 — if applicable, include recognizable visual environment/product].
 [ANSWER TO Q1+Q3 — scene description that reflects the event and atmosphere].
 [Camera/lighting details: natural light, shallow depth of field, realistic].
 Shot as if by a Reuters or AP photojournalist.
@@ -77,19 +106,21 @@ Pure raw editorial photograph only.
 
 ---
 
-## 4-Question Examples in Practice
+## 5-Question Examples in Practice
 
-### Example A — AI Model Launch Story
+### Example A — OpenAI Model Launch Story
 - Q1: A major AI lab released a new language model
 - Q2: A researcher working at a computer in a lab environment
 - Q3: Calm, focused, technical — clean bright office
 - Q4: Close-up of hands on a keyboard, clean desk, shallow DOF
+- Q5: OpenAI → ultra-clean minimalist research lab, white modern office interior
 
 **Generated Prompt:**
 ```
 A high-end editorial photograph of a researcher's hands typing carefully on a
-modern laptop in a clean, well-lit research office. Calm, focused atmosphere.
-Natural window light from the side. Shallow depth of field, neutral surfaces.
+modern laptop in an ultra-clean, minimalist white research office.
+Calm, focused atmosphere. Natural window light from the side.
+Shallow depth of field, neutral surfaces.
 Shot as if by a Reuters or AP photojournalist.
 Grayscale. Clean composition. One clear focal point.
 STRICTLY NO TEXT. NO LOGOS. NO WATERMARKS. NO GRAPHICS.
@@ -166,6 +197,27 @@ Pure raw editorial photograph only.
 A high-end editorial photograph of a modern startup workspace — clean desks,
 open laptops, a whiteboard with diagrams in the background. Bright, open atmosphere.
 Natural daylight. No people visible, environment only.
+Shot as if by a Reuters or AP photojournalist.
+Grayscale. Clean composition. One clear focal point.
+STRICTLY NO TEXT. NO LOGOS. NO WATERMARKS. NO GRAPHICS.
+Pure raw editorial photograph only.
+```
+
+---
+
+### Example F — NVIDIA Chip Announcement (Q5 in Action)
+- Q1: NVIDIA announced a next-generation AI chip
+- Q2: A high-end GPU / graphics card
+- Q3: Powerful, cutting-edge, industrial precision
+- Q4: Close-up of the actual hardware, clean industrial setting
+- Q5: NVIDIA → close-up of a high-end GPU, green-tinted server infrastructure
+
+**Generated Prompt:**
+```
+A high-end editorial photograph of a modern high-end GPU graphics card
+resting on a clean anti-static surface inside a server infrastructure room
+with subtle green ambient lighting from indicator panels.
+Powerful, precise, industrial atmosphere. Macro lens detail on the chip.
 Shot as if by a Reuters or AP photojournalist.
 Grayscale. Clean composition. One clear focal point.
 STRICTLY NO TEXT. NO LOGOS. NO WATERMARKS. NO GRAPHICS.

@@ -40,7 +40,21 @@
 | Hacker in a dark hoodie | Banned cybersecurity cliché. |
 | AI-generated likeness of a real named person | Legal and ethical risk. |
 | Abstract or fantasy imagery | Editorial photography only. |
+| Generic fallbacks for company news | If the story is about a specific company (e.g. Google), do NOT use generic images (like standard server racks). You MUST use their specific recognizable visual cue (see IMAGE_GEN.md Q5). |
 | Multiple competing subjects in one photo | One subject, one emotion, one focal point. |
+
+### PHOTOGRAPH — ALLOWED (Do Not Confuse With Banned Items Above)
+
+The following ARE allowed and encouraged when the story is about a recognizable company:
+
+| Allowed | Why |
+|---------|-----|
+| Recognizable company buildings (e.g. Apple Park, Googleplex) | These are physical environments, not logos. Reuters photographers use them. |
+| Real products on a clean surface (e.g. GPU, VR headset, phone) | Products are editorial subjects, not branding. |
+| Company campus exteriors or interiors | Gives story-specific visual context. |
+| Manufacturing facilities, clean rooms, labs | Industry-specific environments that tell the story. |
+
+**The rule is simple:** Photograph what a Reuters photographer would photograph at the scene — buildings, hardware, environments. Never photograph a logo, text, or watermark.
 
 ---
 
